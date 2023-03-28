@@ -23,7 +23,10 @@ function custom_menus() {
 		[
 			"primary-menu" => __("Primary Menu"),
 			"secondary-menu" => __("Secondary Menu"),
-			"footer-menu" => __("Footer Menu"),
+			"footer-menu-1" => __("Footer Menu 1"),
+			"footer-menu-2" => __("Footer Menu 2"),
+			"footer-menu-3" => __("Footer Menu 3"),
+			"footer-menu-4" => __("Footer Menu 4")
 		]
 	);
 }
