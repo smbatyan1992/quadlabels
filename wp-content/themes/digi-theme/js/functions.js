@@ -1,66 +1,214 @@
 var $ = jQuery;
-var single_slide_bullets_fade = {
-	loop: true,
-	dots: false,
-    autoplay: true,
-    nav:true,
-    lazyLoad: true,
-    margin:24,
-    navText: ['<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path d="M216.4 163.7c5.1 5 5.1 13.3.1 18.4L155.8 243h231.3c7.1 0 12.9 5.8 12.9 13s-5.8 13-12.9 13H155.8l60.8 60.9c5 5.1 4.9 13.3-.1 18.4-5.1 5-13.2 5-18.3-.1l-82.4-83c-1.1-1.2-2-2.5-2.7-4.1-.7-1.6-1-3.3-1-5 0-3.4 1.3-6.6 3.7-9.1l82.4-83c4.9-5.2 13.1-5.3 18.2-.3z" /><rect x="0" y="0" width="512" height="512" fill="rgba(0, 0, 0, 0)" /></svg>Previous','Next<svg viewBox="0 0 512 512"><path d="M322.2 349.7c-3.1-3.1-3-8 0-11.3l66.4-74.4H104c-4.4 0-8-3.6-8-8s3.6-8 8-8h284.6l-66.3-74.4c-2.9-3.4-3.2-8.1-.1-11.2 3.1-3.1 8.5-3.3 11.4-.1 0 0 79.2 87 80 88s2.4 2.8 2.4 5.7-1.6 4.9-2.4 5.7-80 88-80 88c-1.5 1.5-3.6 2.3-5.7 2.3s-4.1-.8-5.7-2.3z" /><rect x="0" y="0" width="512" height="512" fill="rgba(0, 0, 0, 0)" /></svg>'],
-	autoplayTimeout: 7000,
-	responsiveClass: true,
-    responsive:{
-        0:{
-            items:1,
-            autoHeight:true,
-        },
-        992:{
-            items:2,
-        },
-    }
-};
-
-var single_slide_bullets = {
-	loop: true,
-    autoplay: true,
-    animateIn: "fadeIn",
-	animateOut: "fadeOut", 
-	autoplayTimeout: 7000,
-    items:1,
-	responsiveClass: true,
-    responsive:{
-        0:{
-            dots: false,
-            autoHeight:true,
-        },
-        768:{
-            dots: true,
-        },
-    }
-};
-
-
-var slider_section = $('.slider-section');
-var testimonials_slider = $(".testimonials-slider");
-var service_slider = $(".service-slider");
+var heightS;
+var bukTween = TweenMax;
+var homeController = new ScrollMagic.Controller();
 
 $(document).ready(function() {
+
+        /* Industries carousel */
+
+        var industryslider = $('.industries-carousel');
+
+        industryslider.owlCarousel({
+          loop:true,
+          margin:40,
+          nav:false,
+          autoplay:true,
+          autoplayTimeout:1000,
+          autoplayHoverPause:true,
+          animateOut: 'slideOutDown',
+          animateIn: 'flipInX',
+          responsive:{
+              0:{
+                  items:1
+              },
+              600:{
+                  items:3
+              },
+              1000:{
+                  items:2,
+                  stagePadding: 200,
+              }
+          }
+        })
+
+        function brandSliderClasses() {
+          industryslider.each(function() {
+              var total = $(this).find('.owl-item.active').length;
+              $(this).find('.owl-item').removeClass('firstactiveitem');
+              $(this).find('.owl-item').removeClass('lastactiveitem');
+              $(this).find('.owl-item.active').each(function(index) {
+                  if (index === 0) {
+                      $(this).addClass('firstactiveitem')
+                  }
+                  if (index === total - 1 && total > 1) {
+                      $(this).addClass('lastactiveitem')
+                  }
+              })
+          })
+      }
+      brandSliderClasses();
+      industryslider.on('translated.owl.carousel', function(event) {
+          brandSliderClasses()
+      }); 
+
+    /* Wave Animation for hero */
+
+    function wave() {
+        const rippleSettings = {
+          maxSize: 100,
+          animationSpeed: 5,
+          strokeColor: [0, 79, 85],
+        };
+      
+        const canvasSettings = {
+          blur: 8,
+          ratio: 1,
+        };
+      
+        function Coords(x, y) {
+          this.x = x || null;
+          this.y = y || null;
+        }
+      
+        const Ripple = function Ripple(x, y, circleSize, ctx) {
+          this.position = new Coords(x, y);
+          this.circleSize = circleSize;
+          this.maxSize = rippleSettings.maxSize;
+          this.opacity = 1;
+          this.ctx = ctx;
+          this.strokeColor = `rgba(${Math.floor(rippleSettings.strokeColor[0])},
+            ${Math.floor(rippleSettings.strokeColor[1])},
+            ${Math.floor(rippleSettings.strokeColor[2])},
+            ${this.opacity})`;
+      
+          this.animationSpeed = rippleSettings.animationSpeed;
+          this.opacityStep = (this.animationSpeed / (this.maxSize - circleSize)) / 2;
+        };
+      
+        Ripple.prototype = {
+          update: function update() {
+            this.circleSize = this.circleSize + this.animationSpeed;
+            this.opacity = this.opacity - this.opacityStep;
+            this.strokeColor = `rgba(${Math.floor(rippleSettings.strokeColor[0])},
+              ${Math.floor(rippleSettings.strokeColor[1])},
+              ${Math.floor(rippleSettings.strokeColor[2])},
+              ${this.opacity})`;
+          },
+          draw: function draw() {
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = this.strokeColor;
+            this.ctx.arc(this.position.x, this.position.y, this.circleSize, 0,
+              2 * Math.PI);
+            this.ctx.stroke();
+          },
+          setStatus: function setStatus(status) {
+            this.status = status;
+          },
+        };
+      
+        const canvas = document.querySelector('#canvas');
+        const ctx = canvas.getContext('2d');
+        const ripples = [];
+        const hero = document.getElementById('hero');
+      
+        const height = hero.offsetHeight;
+        const width = hero.offsetWidth;
+      
+        const rippleStartStatus = 'start';
+      
+        const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+      
+        canvas.style.filter = `blur(${canvasSettings.blur}px)`;
+      
+        canvas.width = width * canvasSettings.ratio;
+        canvas.height = height * canvasSettings.ratio;
+      
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+      
+        let animationFrame;
+      
+        // Function which is executed on mouse hover on canvas
+        const canvasMouseOver = (e) => {
+          const x = e.clientX * canvasSettings.ratio;
+          const y = e.clientY * canvasSettings.ratio;
+          ripples.unshift(new Ripple(x, y, 2, ctx));
+        };
+      
+        const animation = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+          const length = ripples.length;
+          for (let i = length - 1; i >= 0; i -= 1) {
+            const r = ripples[i];
+      
+            r.update();
+            r.draw();
+      
+            if (r.opacity <= 0) {
+              ripples[i] = null;
+              delete ripples[i];
+              ripples.pop();
+            }
+          }
+          animationFrame = window.requestAnimationFrame(animation);
+        };
+      
+        animation();
+        canvas.addEventListener('mousemove', canvasMouseOver);
+      }
+      
+      wave();
+      
+      $(window).resize(function(){
+        wave();
+      })
+
+  $('.card-block .card-h').each(function (i, mor) {
+
+
+    // if (i == 6) {
+    //   return;
+    // }
+
+
+    new ScrollMagic.Scene({
+      triggerElement: this,
+      duration: heightS,
+      offset: $(window).height() > 940 ? 120 : 250,
+      reverse: true,
+    }).setPin(this.querySelector('.item')).addTo(homeController);
+
+    new ScrollMagic.Scene({
+      triggerElement: this,
+      duration: 450,
+      offset: 400,
+      reverse: true,
+    }).setTween(bukTween.fromTo(this.querySelector('.item'), 1, { opacity: 1, scale: 1, x: 0 }, { opacity: 0, scale: 0.89, x: -40, ease: Power1.easeOut })).addTo(homeController);
+
+
+    heightS -= 500;
+
+  });
+
+
+  new ScrollMagic.Scene({
+    triggerElement: '.end-card-scroll',
+    offset: 0,
+    reverse: true,
+  }).setClassToggle('.card-block .card-h', 'hidden').addTo(homeController);
+
+var height = 2500;
+
+
+
+
+
     $("#burger-icon").click(function(){
         $(this).toggleClass("open");
         $("#site-nav").addClass("opend");
     });
-
-    if(slider_section.length) {
-		slider_section.owlCarousel(single_slide_bullets);
-		slider_section.find(".owl-controls .owl-dots").wrap("<div class='container'></div>")
-	}
-
-	if(testimonials_slider.length) {
-		testimonials_slider.owlCarousel(single_slide_bullets_fade);
-	}
-	if(service_slider.length) {
-		service_slider.owlCarousel(full_gutter_24);
-    }
     $(".user-content iframe").each(function(){
         $(this).wrap("<div class='embed-responsive embed-responsive-16by9'></div>")
     });
@@ -88,3 +236,28 @@ function mobileMenu() {
         });
     }
 }
+
+$(function () { // wait for document ready
+    // init
+    var controller = new ScrollMagic.Controller({
+        globalSceneOptions: {
+            triggerHook: 'onLeave',
+            duration: "200%" // this works just fine with duration 0 as well
+            // However with large numbers (>20) of pinned sections display errors can occur so every section should be unpinned once it's covered by the next section.
+            // Normally 100% would work for this, but here 200% is used, as Panel 3 is shown for more than 100% of scrollheight due to the pause.
+        }
+    });
+
+    // get all slides
+    var slides = document.querySelectorAll("div.panel");
+
+    // create scene for every slide
+    for (var i=0; i<slides.length; i++) {
+        new ScrollMagic.Scene({
+                triggerElement: slides[i]
+            })
+            .setPin(slides[i], {pushFollowers: false})
+            .addIndicators() // add indicators (requires plugin)
+            .addTo(controller);
+    }
+});
