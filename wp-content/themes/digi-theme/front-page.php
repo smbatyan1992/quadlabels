@@ -6,6 +6,7 @@ require_once("templates/order-steps.php");
 require_once("templates/services.php");
 require_once("templates/commercial.php");
 require_once("templates/about-us.php");
-require_once("templates/industries.php"); ?>
+require_once("templates/industries.php");
+require_once("templates/experience.php"); ?>
 
 <?php get_footer(); ?>

@@ -620,14 +620,19 @@ header {
 	border-radius: 20px;
 }
 
-.services .item {
+.services .item-s {
 	border-radius: 20px;
 	padding: 40px;
 	width: 100%;
 }
 
-.services .card-h {
+.services .card-s {
 	height: 440px;
+	margin-top: 40px;
+}
+
+.services .card-s:first-of-type {
+	margin-top: 0;
 }
 
 .service-description p {
@@ -638,7 +643,7 @@ header {
 	margin-bottom: 16px;
 }
 
-.services .card-h .item img {
+.services .card-s .item-s img {
 	width: 100%;
 	max-height: 355px;
 	object-fit: contain;
@@ -670,6 +675,36 @@ header {
 
 .services .card-h:nth-child(even) .row {
 	flex-direction: row-reverse;
+}
+
+.services .last-s-bg {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: auto !important;
+	height: auto !important;
+	object-fit: contain !important;
+}
+
+.services .last-s-bg .data-scrollmagic-pin-spacer {
+	position: relative;
+}
+
+.card-s.last-s .item-s {
+	background: #FF8400;
+}
+
+.card-s.last-s div {
+	height: 100%;
+}
+
+.services-bg {
+	position: absolute;
+	top: -60px;
+	right: 0;
+	width: auto !important;
+	height: auto !important;
+	object-fit: contain !important;
 }
 
 /* Commercial section */
@@ -817,6 +852,25 @@ header {
 .firstactiveitem .ind-button {
 	display: flex;
 	justify-content: flex-end;
+}
+
+
+/* Experience */
+
+.experience {
+	height: 600px;
+}
+
+.images-item .parallax-item {
+	transform: translateZ(0);
+    will-change: transform;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.images-item .parallax-item img {
+	width: 100px;
 }
 
 

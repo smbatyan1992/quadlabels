@@ -2,8 +2,42 @@ var $ = jQuery;
 var heightS;
 var bukTween = TweenMax;
 var homeController = new ScrollMagic.Controller();
-
+var scene = document.getElementById('scene-1');
+var scene2 = document.getElementById('scene-2');
+var paralaxIndex = 0;
+var widthWindow = $(window).width();
 $(document).ready(function() {
+
+
+        /* Parallax */
+
+        new ScrollMagic.Scene({
+          triggerElement: '.experience p',
+          offset: 0,
+          reverse: false
+        }).setTween(bukTween.fromTo($('.experience .images-item'), 1,
+          {
+            y: 500,
+            opacity: 0
+          },
+          {
+            y: 0,
+            opacity: 1,
+            ease: Power4.easeOut,
+            onComplete: function () {
+              paralaxIndex++
+              if (widthWindow > 767 && paralaxIndex > 0) {
+                parallaxInstance = new Parallax(scene, {
+                  relativeInput: true
+                });
+      
+      
+                parallaxInstance = new Parallax(scene2, {
+                  relativeInput: true
+                });
+              }
+            }
+          }, 0.07)).addTo(homeController);
 
         /* Industries carousel */
 
@@ -168,9 +202,9 @@ $(document).ready(function() {
   $('.card-block .card-h').each(function (i, mor) {
 
 
-    // if (i == 6) {
-    //   return;
-    // }
+    if (i == 4) {
+     return;
+    }
 
 
     new ScrollMagic.Scene({
@@ -198,6 +232,47 @@ $(document).ready(function() {
     offset: 0,
     reverse: true,
   }).setClassToggle('.card-block .card-h', 'hidden').addTo(homeController);
+
+
+
+
+
+
+
+
+  $('.services .card-block .card-s').each(function (i, mor) {
+
+
+    if (i == 5) {
+    return;
+     }
+
+
+    new ScrollMagic.Scene({
+      triggerElement: this,
+      duration: heightS,
+      offset: $(window).height() > 940 ? 120 : 250,
+      reverse: true,
+    }).setPin(this.querySelector('.services .item-s')).addTo(homeController);
+
+    new ScrollMagic.Scene({
+      triggerElement: this,
+      duration: 450,
+      offset: 400,
+      reverse: true,
+    }).setTween(bukTween.fromTo(this.querySelector('.services .item-s'), 1, { opacity: 1, scale: 1, x: 0 }, { opacity: 0, scale: 0.89, x: -40, ease: Power1.easeOut })).addTo(homeController);
+
+
+    heightS -= 500;
+
+  });
+
+
+  new ScrollMagic.Scene({
+    triggerElement: '.end-card-scroll-services',
+    offset: 0,
+    reverse: true,
+  }).setClassToggle('.services .card-block .card-s', 'hidden').addTo(homeController);
 
 var height = 2500;
 
