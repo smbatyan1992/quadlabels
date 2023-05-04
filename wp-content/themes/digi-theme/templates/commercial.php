@@ -9,7 +9,7 @@ $cs_image_title = get_field('cs_image_title');
         <div class="row">
             <div class="col-lg-6">
                 <div class="commercial-info">
-                    <h2 class="h-one uppercase cs-title"><?= $cs_title; ?></h2>
+                    <h2 class="h-one cs-title"><?= $cs_title; ?></h2>
                     <p class="commercial-description"><?= $cs_description; ?></p>
                 </div>
             </div>

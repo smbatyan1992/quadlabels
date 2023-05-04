@@ -45,7 +45,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-4 col-md-12">
 							<div class="footer-contact-info d-flex">
 								<div class="footer-contact">
 									<div itemscope itemtype="http://schema.org/Organization" id="logo">

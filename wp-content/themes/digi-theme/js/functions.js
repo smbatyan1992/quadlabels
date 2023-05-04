@@ -7,37 +7,61 @@ var scene2 = document.getElementById('scene-2');
 var paralaxIndex = 0;
 var widthWindow = $(window).width();
 $(document).ready(function() {
+  AOS.init({once: true});
 
-
-        /* Parallax */
-
-        new ScrollMagic.Scene({
-          triggerElement: '.experience p',
-          offset: 0,
-          reverse: false
-        }).setTween(bukTween.fromTo($('.experience .images-item'), 1,
-          {
-            y: 500,
-            opacity: 0
-          },
-          {
-            y: 0,
-            opacity: 1,
-            ease: Power4.easeOut,
-            onComplete: function () {
-              paralaxIndex++
-              if (widthWindow > 767 && paralaxIndex > 0) {
-                parallaxInstance = new Parallax(scene, {
-                  relativeInput: true
-                });
+      /* Desktop Modal */
       
-      
-                parallaxInstance = new Parallax(scene2, {
-                  relativeInput: true
-                });
-              }
-            }
-          }, 0.07)).addTo(homeController);
+      $('.desktop-header-button').click(function(){
+        $('.custom-modal').addClass('show-modal');
+      })
+
+      $('.custom-modal .btn-close').click(function(){
+        $('.custom-modal').removeClass('show-modal');
+      })
+
+      /* Mobile Menu Function */
+
+      $('#burger-icon').click(function(){
+        $(this).toggleClass('open');
+        $('body').toggleClass('opened-modal');
+        $('.mobile-menu').toggleClass('opened-menu');
+      })
+
+
+
+
+      /* Homepage Product Mobile Carousel */
+
+      var mobile_products = $('.product-carousel-mobile');
+
+        mobile_products.owlCarousel({
+          loop:true,
+          margin:20,
+          dots: true,
+          nav:false,
+          items: 1,
+          autoplay:false,
+          autoplayTimeout:1000,
+          animateOut: 'slideOutDown',
+          animateIn: 'flipInX',
+        })
+
+
+      /* Homepage Services Mobile Carousel */
+
+      var mobile_services = $('.services-mobile-slide');
+
+      mobile_services.owlCarousel({
+        loop:true,
+        margin:20,
+        nav:false,
+        items: 1,
+        autoplay:false,
+        autoplayTimeout:1000,
+        animateOut: 'slideOutDown',
+        animateIn: 'flipInX',
+      })
+
 
         /* Industries carousel */
 
@@ -45,46 +69,48 @@ $(document).ready(function() {
 
         industryslider.owlCarousel({
           loop:true,
-          margin:40,
+          margin:20,
           nav:false,
-          autoplay:true,
-          autoplayTimeout:1000,
-          autoplayHoverPause:true,
+          autoplay:false,
+          autoplayTimeout:3000,
+          autoplayHoverPause:false,
           animateOut: 'slideOutDown',
           animateIn: 'flipInX',
           responsive:{
               0:{
-                  items:1
+                  items:2
               },
               600:{
                   items:3
               },
               1000:{
-                  items:2,
-                  stagePadding: 200,
+                  items:5,
+              },
+              1700:{
+                items: 5,
               }
           }
         })
 
-        function brandSliderClasses() {
-          industryslider.each(function() {
-              var total = $(this).find('.owl-item.active').length;
-              $(this).find('.owl-item').removeClass('firstactiveitem');
-              $(this).find('.owl-item').removeClass('lastactiveitem');
-              $(this).find('.owl-item.active').each(function(index) {
-                  if (index === 0) {
-                      $(this).addClass('firstactiveitem')
-                  }
-                  if (index === total - 1 && total > 1) {
-                      $(this).addClass('lastactiveitem')
-                  }
-              })
-          })
-      }
-      brandSliderClasses();
-      industryslider.on('translated.owl.carousel', function(event) {
-          brandSliderClasses()
-      }); 
+      //   function brandSliderClasses() {
+      //     industryslider.each(function() {
+      //         var total = $(this).find('.owl-item.active').length;
+      //         $(this).find('.owl-item').removeClass('firstactiveitem');
+      //         $(this).find('.owl-item').removeClass('lastactiveitem');
+      //         $(this).find('.owl-item.active').each(function(index) {
+      //             if (index === 0) {
+      //                 $(this).addClass('firstactiveitem')
+      //             }
+      //             if (index === total - 1 && total > 1) {
+      //                 $(this).addClass('lastactiveitem')
+      //             }
+      //         })
+      //     })
+      // }
+      // brandSliderClasses();
+      // industryslider.on('translated.owl.carousel', function(event) {
+      //     brandSliderClasses()
+      // }); 
 
     /* Wave Animation for hero */
 
@@ -198,6 +224,7 @@ $(document).ready(function() {
       $(window).resize(function(){
         wave();
       })
+      
 
   $('.card-block .card-h').each(function (i, mor) {
 
@@ -210,7 +237,7 @@ $(document).ready(function() {
     new ScrollMagic.Scene({
       triggerElement: this,
       duration: heightS,
-      offset: $(window).height() > 940 ? 120 : 250,
+      offset: $(window).height() > 940 ? 500 : 250,
       reverse: true,
     }).setPin(this.querySelector('.item')).addTo(homeController);
 
@@ -251,7 +278,7 @@ $(document).ready(function() {
     new ScrollMagic.Scene({
       triggerElement: this,
       duration: heightS,
-      offset: $(window).height() > 940 ? 120 : 250,
+      offset: $(window).height() > 940 ? 400 : 250,
       reverse: true,
     }).setPin(this.querySelector('.services .item-s')).addTo(homeController);
 
@@ -280,10 +307,6 @@ var height = 2500;
 
 
 
-    $("#burger-icon").click(function(){
-        $(this).toggleClass("open");
-        $("#site-nav").addClass("opend");
-    });
     $(".user-content iframe").each(function(){
         $(this).wrap("<div class='embed-responsive embed-responsive-16by9'></div>")
     });

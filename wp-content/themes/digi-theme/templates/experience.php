@@ -3,27 +3,23 @@ $ex_title = get_field('ex_title');
 $ex_subtitle = get_field('ex_subtitle');
 $ex_button = get_field('ex_button');
 ?>
-<section class="experience green-section">
-    <div class="container">
-        <p>Test parrallax</p>
+<section class="experience green-section relative-parent">
+    <div class="experience-info">
+        <div class="container">
+            <h3 class="white-text h-three text-center experience-title"><?= $ex_title; ?></h3>
+            <p class="white-text experience-subtitle"><?= $ex_subtitle; ?></p>
+            <a href="<?= $ex_button['url']; ?>" class="bordered-button experience-button white-bordered"><?= $ex_button['title']; ?></a>
+        </div>
     </div>
-    <div class="pr-1 images-item" id="scene-2">
-        <?php
+    <?php
         if( have_rows('ex_images') ):
-            $pr1 = 1;
-            $value = 15;
+            $prcount = 1;
             while( have_rows('ex_images') ) : the_row();
                 $image_ex = get_sub_field('image');
-                if($pr1 < 5): ?>
-                    <div class="cover parallax-item" data-depth="0.1">
-                        <?php echo wp_get_attachment_image( $image, 'thumbnail' ); ?>
-                    </div>
-                <?php endif;
-                $pr1++;
-            endwhile;
+                $speed = get_sub_field('speed'); ?>
+                <div class="parallax-layer layer-<?= $prcount; ?>" data-speed="<?php echo $speed; ?>">
+                    <?php echo wp_get_attachment_image( $image, 'thumbnail' ); ?>
+                </div>
+            <?php $prcount++; endwhile;
         endif; ?>
-    </div>
-    <div class="pr-2">
-
-    </div>
 </section>

@@ -3,14 +3,14 @@ $abs_title = get_field('abs_title');
 ?>
 <section class="about-us">
     <div class="container">
-        <h2 class="h-one uppercase text-center about-us-title"><?= $abs_title; ?></h2>
+        <h2 class="h-one text-center about-us-title"><?= $abs_title; ?></h2>
         <div class="row">
             <?php
             if( have_rows('about_us') ):
                 while( have_rows('about_us') ) : the_row();
                     $title = get_sub_field('title');
                     $description = get_sub_field('description'); ?>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12" data-aos="fade-up" data-aos-duration="1000">
                         <div class="about-item">
                             <div class="about-title">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

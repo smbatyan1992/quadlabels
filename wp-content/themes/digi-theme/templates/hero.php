@@ -7,14 +7,14 @@ $hero_image = get_field('hero_image');
 <section id="hero" class="hero relative-parent">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-7 col-md-12">
                 <div class="hero-info">
-                    <h1 class="h-one uppercase hero-title"><?= $hero_title; ?></h1>
+                    <h1 class="h-one hero-title"><?= $hero_title; ?></h1>
                     <p class="hero-description"><?= $hero_description; ?></p>
                     <a href="<?= $hero_button['url']; ?>" class="primary-button hero-button"><?= $hero_button['title']; ?></a>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-5 col-md-12">
                 <div class="hero-image-section relative-parent">
                     <div class="circle-logo">
                         <img src="<?php echo get_template_directory_uri(); ?>/img/logo-around.svg" class="logo-around" alt="logo" title="logo">
