@@ -58,3 +58,34 @@ function custom_post_type_industries() {
 	register_post_type("industries", $args);
 }
 add_action("init", "custom_post_type_industries");
+
+
+
+function custom_post_type_products() {
+	$labels = [
+		"name"               => _x("Products", "products"),
+		"singular_name"      => _x("Products", "product"),
+		"add_new"            => _x("Add New", "Product"),
+		"add_new_item"       => __("Add New Product"),
+		"edit_item"          => __("Edit Product"),
+		"new_item"           => __("New Product"),
+		"all_items"          => __("All Products"),
+		"view_item"          => __("View Products"),
+		"search_items"       => __("Search Products"),
+		"not_found"          => __("No Products found"),
+		"not_found_in_trash" => __("No Products found in the Trash"), 
+		"parent_item_colon"  => "",
+		"menu_name"          => "Products"
+	];
+
+	$args = [
+		"labels"        => $labels,
+		"description"   => "Holds our Products and Industry specific data",
+		"public"        => true,
+		"menu_position" => 5,
+		"supports"      => ["title", "editor", "thumbnail", "post-formats" ,"custom-fields"],
+		"has_archive"   => true,
+	];
+	register_post_type("products", $args);
+}
+add_action("init", "custom_post_type_products");

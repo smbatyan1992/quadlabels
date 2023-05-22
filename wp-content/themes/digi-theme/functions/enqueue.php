@@ -28,7 +28,9 @@ function enqueue_assets() {
 	wp_enqueue_script('gsap', '//cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js', array(), false, true);
 	wp_enqueue_script('sm-gsap', '//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js', array(), false, true);
 	wp_enqueue_script('aos-js', '//unpkg.com/aos@2.3.1/dist/aos.js', array(), false, true);
+	wp_enqueue_script('masonry', '//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js', array(), false, true);
 	wp_enqueue_script('para', '//cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js', array(), false, true);
+	wp_enqueue_script("mixitup", get_template_directory_uri() . "/js/mixitup.min.js", "", "", true);
 	wp_enqueue_script("functions", get_template_directory_uri() . "/js/functions.js", "", "", true);
 
 	wp_localize_script("functions", "wp_var",

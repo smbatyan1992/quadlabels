@@ -31,7 +31,7 @@ $ss_subtitle = get_field('ss_subtitle');
                                     <div class="service-info">
                                         <p class="s-count white-text"><?php if($s_count < 10): ?>0<?php endif; ?><?= $s_count; ?></p>
                                         <h3 class="service-title h-two white-text"><?php the_title(); ?></h3>
-                                        <div class="service-description white-text"><?php the_content(); ?></div>
+                                        <div class="service-description white-text"><?php echo excerpt(10) ?></div>
                                         <a class="service-button uppercase line-button white-text" href="<?php the_permalink(); ?>">explore</a>
                                     </div>
                                 </div>
