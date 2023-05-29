@@ -47,7 +47,7 @@
 						</div>
 						<div class="col-lg-4 col-md-12">
 							<div class="footer-contact-info d-flex">
-								<div class="footer-contact">
+								<div class="footer-contact relative-parent">
 									<div itemscope itemtype="http://schema.org/Organization" id="logo">
 										<a itemprop="url" href="<?php echo bloginfo('url') ?>">
 											<img itemprop="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo_white.svg">
@@ -60,6 +60,16 @@
 									<a href="tel:<?= $phone_number_2; ?>" class="phone white-text"><?= $phone_number_2; ?></a>
 									<a href="tel:<?= $phone_number_3; ?>" class="phone white-text"><?= $phone_number_3; ?></a>
 									<a href="tel:<?= $phone_number_4; ?>" class="phone white-text"><?= $phone_number_4; ?></a>
+									<div class="social">
+										<?php
+										if( have_rows('social_icons', 'option') ):
+											while( have_rows('social_icons', 'option') ) : the_row();
+												$icon = get_sub_field('icon');
+												$social_url = get_sub_field('social_url'); ?>
+												<a href="<?= $social_url; ?>" class="social-icon"><?= $icon; ?></a>
+											<?php endwhile;
+										endif; ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -67,16 +77,9 @@
 				</div>
 				<div class="footer-bottom d-flex">
 					<div class="copy">Copyright &copy; <?php echo date("Y") . ". All rights reserved."; ?></div>
-					<div class="social">
-						<span>Let’s Connect:</span>
-						<?php
-						if( have_rows('social_icons', 'option') ):
-							while( have_rows('social_icons', 'option') ) : the_row();
-								$icon = get_sub_field('icon');
-								$social_url = get_sub_field('social_url'); ?>
-								<a href="<?= $social_url; ?>" class="social-icon"><?= $icon; ?></a>
-							<?php endwhile;
-						endif; ?>
+					<div class="privacy-nav d-flex">
+						<a href="<?php echo get_site_url(); ?>/privacy-policy/" class="privacy-nav-item privacy-policy">Privacy Policy</a>
+						<a href="<?php echo get_site_url(); ?>/terms-of-use/" class="privacy-nav-item terms-of-use">Terms of Use</a>
 					</div>
 				</div>
 			</div>

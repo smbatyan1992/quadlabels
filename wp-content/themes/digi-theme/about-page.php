@@ -17,13 +17,13 @@ $section_background = get_field('section_background');
     <div class="ab-section-1 relative-parent">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="about-description">
                         <h1 class="h-one about-page-title"><?php the_title(); ?></h1>
                         <?= $sec_1_description; ?>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="about-image">
                         <?php echo wp_get_attachment_image( $sect_1_image, 'full' ); ?>
                     </div>
@@ -34,7 +34,7 @@ $section_background = get_field('section_background');
     <div class="ab-section-2 relative-parent">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="about-image relative-parent">
                         <div class="about-image-group">
                             <?php echo wp_get_attachment_image( $sect_2_image, 'full' ); ?>
@@ -44,7 +44,7 @@ $section_background = get_field('section_background');
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="about-description">
                         <?= $sec_2_description; ?>
                     </div>
@@ -55,12 +55,12 @@ $section_background = get_field('section_background');
     <div class="ab-section-3 relative-parent">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="about-description">
                         <?= $sec_3_description; ?>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="about-image relative-parent">
                         <?php echo wp_get_attachment_image( $sect_3_image, 'full' ); ?>
                         <div class="absolute-image" data-aos="fade-right">
@@ -110,7 +110,7 @@ $section_background = get_field('section_background');
                 while( have_rows('advantages') ) : the_row();
                     $icon = get_sub_field('icon');
                     $title = get_sub_field('title'); ?>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-6 col-6">
                         <div class="about-adv-item text-center">
                             <?php echo file_get_contents($icon); ?>
                             <p class="adv-item-title"><?= $title; ?></p>

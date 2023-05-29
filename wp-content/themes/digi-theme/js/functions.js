@@ -8,6 +8,11 @@ var paralaxIndex = 0;
 var widthWindow = $(window).width();
 $(document).ready(function() {
 
+  $('.step-item').click(function(){
+    var sc = $(this).attr('data-sc');
+    $('.screen-image').css('display', 'none');
+    $('.sc-bg-' + sc).css('display', 'block');
+  })
   
 
   $('.filter-item').click(function(){
@@ -59,6 +64,20 @@ $(document).ready(function() {
           autoplayTimeout:1000,
           animateOut: 'slideOutDown',
           animateIn: 'flipInX',
+          responsive:{
+            0:{
+                items:2,
+                nav:false
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            1000:{
+                items:5,
+                nav:false
+            }
+        }
         })
 
 

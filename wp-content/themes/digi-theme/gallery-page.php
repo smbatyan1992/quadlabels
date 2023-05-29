@@ -3,7 +3,7 @@
 get_header();
 ?>
 <script>
-  $( document ).ready(function() {
+  jQuery( document ).ready(function() {
     var mixer = mixitup('.gallery-container', {
     selectors: {
         target: '.item'

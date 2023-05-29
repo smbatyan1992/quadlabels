@@ -10,6 +10,14 @@ $ssb_description = get_field('ssb_description');
         <div class="laptop-section relative-parent">
             <img src="<?php echo get_template_directory_uri(); ?>/img/laptop.png" class="laptop-image" alt="laptop" title="laptop">
             <img class="screen-image" src="<?= $os_image; ?>" alt="screen-image" title="screen-image">
+            <?php
+                if( have_rows('os_steps') ):
+                    $count_setp = 1;
+                    while( have_rows('os_steps') ) : the_row();
+                        $screen_bg = get_sub_field('screen_bg'); ?>
+                        <img class="screen-image screen-image-sl sc-bg-<?= $count_setp; ?>" src="<?= $screen_bg; ?>" alt="screen-image" title="screen-image">
+                    <?php $count_setp++; endwhile;
+                endif; ?>
             <div class="steps-block">
                 <?php
                 if( have_rows('os_steps') ):
@@ -17,7 +25,7 @@ $ssb_description = get_field('ssb_description');
                     while( have_rows('os_steps') ) : the_row();
                         $title = get_sub_field('title');
                         $icon = get_sub_field('icon'); ?>
-                        <div class="step-item d-flex step-<?= $count_setp; ?>" data-aos="flip-left" data-aos-duration="1000">
+                        <div class="step-item d-flex step-<?= $count_setp; ?>" data-sc="<?= $count_setp; ?>" data-aos="flip-left" data-aos-duration="1000">
                             <?php echo file_get_contents($icon); ?>
                             <p class="step-title"><?= $title; ?></p>
                         </div>
@@ -33,7 +41,7 @@ $ssb_description = get_field('ssb_description');
             while( have_rows('os_steps') ) : the_row();
             $title = get_sub_field('title');
             $icon = get_sub_field('icon'); ?>
-            <div class="step-item d-flex step-<?= $count_setp; ?>" data-aos="flip-left" data-aos-duration="1000">
+            <div class="step-item d-flex step-<?= $count_setp; ?>" data-sc="<?= $count_setp; ?>" data-aos="flip-left" data-aos-duration="1000">
                 <?php echo file_get_contents($icon); ?>
                 <p class="step-title"><?= $title; ?></p>
             </div>
