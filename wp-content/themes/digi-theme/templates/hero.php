@@ -29,7 +29,7 @@ $hero_image = get_field('hero_image');
             </div>
         </div>
     </div>
-    <img class="label-main" src="<?php echo get_template_directory_uri(); ?>/img/label-main.webp" alt="label" title="label">
+    <img class="label-main" src="<?php echo get_template_directory_uri(); ?>/img/label-main.png" alt="label" title="label">
     <div class="label-line"></div>
     <div class="gray-circle absolute-element"></div>
     <canvas id="canvas"></canvas>

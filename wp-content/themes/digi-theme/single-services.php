@@ -74,7 +74,7 @@
                 </div>
                 <div class="container">
                     <div class="s-p-button-container">
-                        <a href="<?= $s_p_button['url']; ?>" class="primary-button s-p-button"><?= $s_p_button['title']; ?></a>
+                        <a href="<?php echo get_site_url(); ?>/products/" class="primary-button s-p-button">See our Products</a>
                     </div>
                 </div>
             </section>

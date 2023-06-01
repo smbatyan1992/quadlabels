@@ -18,7 +18,7 @@ $ex_button = get_field('ex_button');
                 $image_ex = get_sub_field('image');
                 $speed = get_sub_field('speed'); ?>
                 <div class="parallax-layer layer-<?= $prcount; ?>" data-speed="<?php echo $speed; ?>">
-                    <?php echo wp_get_attachment_image( $image, 'thumbnail' ); ?>
+                    <?php echo wp_get_attachment_image( $image_ex, 'full' ); ?>
                 </div>
             <?php $prcount++; endwhile;
         endif; ?>

@@ -13,7 +13,7 @@
                     <h1 class="product-single-title h-three"><?php the_title(); ?></h1>
                     <div class="product-single-content">
                         <?php the_content(); ?>
-                        <a href="#" class="primary-button product-order-button">Order Now</a>
+                        <a href="<?php the_field('order_button_url'); ?>" class="primary-button product-order-button">Order Now</a>
                     </div>
                 </div>
                 <div class="col-lg-6">

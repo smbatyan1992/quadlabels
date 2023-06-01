@@ -14,7 +14,7 @@ $header_button = get_field('header_button', 'option');
 $modal_sing_in = get_field('modal_sing_in', 'option');
 $modal_register_url = get_field('modal_register_url', 'option');
 ?>
-<header itemscope itemtype="http://schema.org/WPHeader">
+<header class="site-header" itemscope itemtype="http://schema.org/WPHeader">
 	<div class="container flex-container header-items relative-parent">
 		<div class="header-left">
 			<div itemscope itemtype="http://schema.org/Organization" id="logo">
@@ -22,14 +22,14 @@ $modal_register_url = get_field('modal_register_url', 'option');
 					<img itemprop="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo.svg">
 				</a>
 			</div>
-			<nav itemscope itemtype="http://schema.org/SiteNavigationElement"><?php
+		</div>
+		<nav itemscope itemtype="http://schema.org/SiteNavigationElement"><?php
 				wp_nav_menu([
 					'theme_location' => 'primary-menu',
 					'menu_class' => 'main-menu',
 					'container' => '',
 				]); ?>
-			</nav>
-		</div>
+		</nav>
 		<div class="header-right relative parent">
 			<div id="burger-icon">
 				<span></span>
@@ -99,3 +99,4 @@ $modal_register_url = get_field('modal_register_url', 'option');
     </div>
   </div>
 </div>
+<div class="modal-over"></div>
